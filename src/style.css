@@ -45,6 +45,75 @@ header {
   padding-bottom: 3px;
 }
 
+/* pokemon list section */
+.pokemon {
+  display: flex;
+
+  /* display: none; */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  height: 490px;
+  overflow-y: scroll;
+}
+
+.pokemon::-webkit-scrollbar {
+  display: none;
+}
+
+.pokemon-content {
+  display: flex;
+  flex-direction: column;
+  width: 398px;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  backdrop-filter: blur(3px);
+}
+
+.content-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.likes {
+  display: flex;
+  gap: 3.4rem;
+  margin-top: -2px;
+}
+
+.la-heart {
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.btn-click {
+  width: 180px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  background: #4164ff;
+  cursor: pointer;
+}
+
+/* comments modal section */
+.comments {
+  display: none;
+}
+
 /* footer section */
 footer {
   position: absolute;
