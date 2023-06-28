@@ -9,12 +9,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    clean: true,
   },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
+    port: 8000,
     open: true,
     hot: true,
   },
@@ -32,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Capstone project',
+      title: 'My Pokémon',
       template: path.resolve(__dirname, 'src/template.html'),
     }),
   ],
