@@ -23,6 +23,9 @@ const displayPokemon = async () => {
         `;
     card.innerHTML += display;
   });
+
+  const count = document.querySelector('.pokemon-count');
+  count.innerHTML = `(${pokemon.length})`;
 };
 
 // eslint-disable-next-line import/prefer-default-export
