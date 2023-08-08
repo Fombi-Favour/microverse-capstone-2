@@ -3,8 +3,6 @@ import { displayApi } from './apiUrl.js';
 const getPokemon = async () => {
   const response = await fetch(displayApi);
   const data = await response.json();
-  // const count = data.slice(40, 60);
-  // itemCount(count.length);
   return data;
 };
 
