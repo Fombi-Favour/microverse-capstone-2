@@ -1,61 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <%= htmlWebpackPlugin.options.title %> </title>
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
     <!-- header -->
     <header>
-        <img id="logo" alt="logo">
+      <div class="main-title">
+        <i class="las la-bars" id="menu"></i>
+        <h2>Pokémon</h2>
+      </div>
+      <!-- desktop menu -->
+      <div class="desk-menu-nav">
+        <img id="logo1" alt="logo" />
         <ul class="list">
-            <li class="items">
-                <a href="" class="active-link">
-                    <span>Pokemon</span>
-                    <span class="pokemon-count">(20)</span>
-                </a>
-            </li>
-            <li class="items">
-                <a href="">Series</a>
-            </li>
-            <li class="items">
-                <a href="">People</a>
-            </li>
+          <li class="items">
+            <a href="" class="active-link">
+              <span>Pokemon</span>
+              <span class="pokemon-count">(20)</span>
+            </a>
+          </li>
+          <li class="items">
+            <a href="">Series</a>
+          </li>
+          <li class="items">
+            <a href="">People</a>
+          </li>
         </ul>
+      </div>
+      <!-- mobile menu -->
+      <div class="mob-menu-nav" id="menuNav">
+        <i class="las la-times" id="close"></i>
+        <img id="logo" alt="logo" />
+        <ul class="list">
+          <li class="items">
+            <a href="" class="active-link">
+              <span>Pokemon</span>
+              <span class="pokemon-count">(20)</span>
+            </a>
+          </li>
+          <li class="items">
+            <a href="">Series</a>
+          </li>
+          <li class="items">
+            <a href="">People</a>
+          </li>
+        </ul>
+      </div>
     </header>
     <!-- pokemon list -->
-    <section class="pokemon">
-        <div class="pokemon-content">
-            <img id="pic" alt="pic">
-            <div class="content-desc">
-                <h4>Pokemon1</h4>
-                <div class="likes">
-                    <i class="las la-heart"></i>
-                    <span class="like-count">5 Likes</span>
-                </div>
-            </div>
-            <div class="action">
-                <button type="button" class="btn-click">Comments</button>
-            </div>
-        </div>
-    </section>
+    <section class="pokemon"></section>
     <!-- comment modal (complete later!!!) -->
     <section class="comments">
-        <div class="modal">
-            <div class="action-close">
-                <span>x</span>
-            </div>
-            <div class="content">
-                <span>pic</span>
-            </div>
+      <div class="modal">
+        <div class="action-close">
+          <span>x</span>
         </div>
+        <div class="content">
+          <span>pic</span>
+        </div>
+      </div>
     </section>
     <!-- footer -->
     <footer>
-        Created by <b><a href="https://github.com/Fombi-Favour" target="_blank" rel="noopener noreferrer">Favour</a></b> under CC license
+      Created by
+      <b
+        ><a
+          href="https://github.com/Fombi-Favour"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Favour</a
+        ></b
+      >
+      under CC license
     </footer>
-</body>
+  </body>
 </html>
