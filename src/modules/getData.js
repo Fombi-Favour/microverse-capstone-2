@@ -19,4 +19,18 @@ const getPokemonUrl = async () => {
   return fetchedUrls;
 };
 
-export { getPokemon, getPokemonUrl };
+const getPokemonSpecies = async () => {
+  const pokemon = await getPokemonUrl();
+  const urls = pokemon.map((item) => item.species.url);
+  const fetchedUrl = await Promise.all(
+    urls.map(async (url) => {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    }),
+  );
+  console.log(fetchedUrl);
+  return fetchedUrl;
+};
+
+export { getPokemon, getPokemonUrl, getPokemonSpecies };
