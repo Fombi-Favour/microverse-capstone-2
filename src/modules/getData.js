@@ -1,5 +1,6 @@
 import { displayApi } from './apiUrl.js';
 
+// Getting data from pokemon API
 const getPokemon = async () => {
   const response = await fetch(displayApi);
   const data = await response.json();
@@ -29,8 +30,9 @@ const getPokemonSpecies = async () => {
       return data;
     }),
   );
-  console.log(fetchedUrl);
   return fetchedUrl;
 };
+
+// Getting data from involvement API
 
 export { getPokemon, getPokemonUrl, getPokemonSpecies };
