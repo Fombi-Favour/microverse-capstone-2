@@ -1,4 +1,4 @@
-import { displayApi } from './apiUrl.js';
+import { displayApi, likeApi } from './apiUrl.js';
 
 // Getting data from pokemon API
 const getPokemon = async () => {
@@ -35,4 +35,23 @@ const getPokemonSpecies = async () => {
 
 // Getting data from involvement API
 
-export { getPokemon, getPokemonUrl, getPokemonSpecies };
+const getLikes = async () => {
+  const response = await fetch(likeApi);
+  const likes = await response.json();
+  return likes;
+};
+
+const postLikes = async (id) => {
+  const response = await fetch(likeApi, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      item_id: id,
+    }),
+  });
+  return response;
+};
+
+export {
+  getPokemon, getPokemonUrl, getPokemonSpecies, postLikes, getLikes,
+};
