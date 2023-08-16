@@ -24,8 +24,13 @@ const displayPokemon = async () => {
     card.innerHTML += display;
   });
 
+  // desktop version of pokemon count
   const count = document.querySelector('.pokemon-count');
   count.innerHTML = `(${pokemon.length})`;
+
+  // mobile version of pokemon count
+  const counter = document.querySelector('#mobile-count');
+  counter.innerHTML = `(${pokemon.length})`;
 };
 
 // eslint-disable-next-line import/prefer-default-export
