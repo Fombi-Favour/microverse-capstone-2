@@ -138,6 +138,10 @@ header {
   outline: none;
 }
 
+.activate {
+  color: #147bf0;
+}
+
 .action {
   display: flex;
   justify-content: center;
