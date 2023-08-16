@@ -35,10 +35,17 @@ const displayPokemon = async () => {
     card.innerHTML += display;
 
     const likeButton = document.querySelectorAll('.like-me');
+    const likeText = document.querySelector('.like-count');
     const liking = () => {
       likeButton.forEach((item) => item.addEventListener('click', () => {
-        document.getElementById(item.id).innerHTML = '&#10084;';
-        axios.post(likeApi, { item_id: item.id });
+        likeButton.classList.add('activate');
+        setTimeout(() => {
+          likeButton.classList.remove('activate');
+        }, 760);
+        axios.post(likeApi, { item_id: item.id }).then(() => {
+          totalLikes += 1;
+          likeText.innerHTML = totalLikes;
+        });
       }));
     };
     liking();
