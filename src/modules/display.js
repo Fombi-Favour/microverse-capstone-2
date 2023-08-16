@@ -1,26 +1,29 @@
-import { getLikes, getPokemonUrl, postLikes } from './getData.js';
+import axios from 'axios';
+import { getPokemonUrl } from './getData.js';
+import { likeApi } from './apiUrl.js';
 
 const displayPokemon = async () => {
   const pokemon = await getPokemonUrl();
-  const likes = await getLikes();
+  const numberLikes = JSON.parse(localStorage.getItem('likes'));
+  const postLikes = Array.isArray(numberLikes) ? numberLikes : [];
+  let totalLikes;
   const card = document.querySelector('.pokemon');
   card.innerHTML = '';
-  pokemon.forEach((data, index) => {
-    const likeId = likes.findIndex((like) => Number(like.item_id) === index);
-    let totalLikes;
-    if (likeId >= 0) {
-      totalLikes = likes[likeId].likes;
-    } else {
-      totalLikes = 0;
-    }
+  pokemon.forEach((data) => {
+    // eslint-disable-next-line no-return-assign
+    postLikes.forEach((like) => (parseInt(like.item_id, 10) === data.id ? (totalLikes = like.likes) : ''));
+
+    axios.get(likeApi).then((res) => localStorage.setItem('likes', JSON.stringify(res.data)));
     const display = `
             <div class="pokemon-content">
                 <img id="pic" src="${data.sprites.other['official-artwork'].front_default}" alt="pokemon-pic">
                 <div class="content-desc">
                     <h4>${data.species.name}</h4>
                     <div class="likes">
-                        <i class="las la-heart" id="like-me"></i>
-                        <span class="like-count">${totalLikes} Likes</span>
+                        <button type="button" class="like-me" id=${data.id}>
+                          <i class="las la-heart"></i>
+                        </button>
+                        <span class="like-count">${totalLikes || '0'} Likes</span>
                     </div>
                 </div>
                 <div class="action">
@@ -31,17 +34,14 @@ const displayPokemon = async () => {
         `;
     card.innerHTML += display;
 
-    // Event listener for like button
-    const likeMe = document.querySelector('#like-me');
-    likeMe.addEventListener('click', async (e) => {
-      likeMe.classList.add('activate');
-      setTimeout(() => {
-        likeMe.classList.remove('activate');
-      }, 760);
-      await postLikes(e.target.dataset.id);
-      totalLikes += 1;
-      likeMe.textContent = totalLikes;
-    });
+    const likeButton = document.querySelectorAll('.like-me');
+    const liking = () => {
+      likeButton.forEach((item) => item.addEventListener('click', () => {
+        document.getElementById(item.id).innerHTML = '&#10084;';
+        axios.post(likeApi, { item_id: item.id });
+      }));
+    };
+    liking();
   });
 
   // desktop version of pokemon count
