@@ -132,6 +132,12 @@ header {
   margin-top: -10px;
 }
 
+.like-me {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
 .action {
   display: flex;
   justify-content: center;
