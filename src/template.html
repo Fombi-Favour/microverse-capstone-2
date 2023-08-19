@@ -4,79 +4,121 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
-    <!-- header -->
-    <header>
-      <div class="main-title">
-        <i class="las la-bars" id="menu"></i>
-        <h2>Pokémon</h2>
-      </div>
-      <!-- desktop menu -->
-      <div class="desk-menu-nav">
-        <img id="logo1" alt="logo" />
-        <ul class="list">
-          <li class="items">
-            <a href="" class="active-link">
-              <span>Pokemon</span>
-              <span class="pokemon-count"></span>
-            </a>
-          </li>
-          <li class="items">
-            <a href="">Series</a>
-          </li>
-          <li class="items">
-            <a href="">People</a>
-          </li>
-        </ul>
-      </div>
-      <!-- mobile menu -->
-      <div class="mob-menu-nav" id="menuNav">
-        <i class="las la-times" id="close"></i>
-        <img id="logo" alt="logo" />
-        <ul class="list">
-          <li class="items">
-            <a href="" class="active-link">
-              <span>Pokemon</span>
-              <span class="pokemon-count" id="mobile-count"></span>
-            </a>
-          </li>
-          <li class="items">
-            <a href="">Series</a>
-          </li>
-          <li class="items">
-            <a href="">People</a>
-          </li>
-        </ul>
-      </div>
-    </header>
-    <!-- pokemon list -->
-    <section class="pokemon"></section>
-    <!-- footer -->
-    <footer>
-      Created by
-      <b
-        ><a
-          href="https://github.com/Fombi-Favour"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Favour</a
-        ></b
-      >
-      under CC license
-    </footer>
+    <div id="blur" class="blurred">
+      <!-- header -->
+      <header>
+        <div class="main-title">
+          <i class="las la-bars" id="menu"></i>
+          <h2>Pokémon</h2>
+        </div>
+        <!-- desktop menu -->
+        <div class="desk-menu-nav">
+          <img id="logo1" alt="logo" />
+          <ul class="list">
+            <li class="items">
+              <a href="" class="active-link">
+                <span>Pokemon</span>
+                <span class="pokemon-count"></span>
+              </a>
+            </li>
+            <li class="items">
+              <a href="">Series</a>
+            </li>
+            <li class="items">
+              <a href="">People</a>
+            </li>
+          </ul>
+        </div>
+        <!-- mobile menu -->
+        <div class="mob-menu-nav" id="menuNav">
+          <i class="las la-times" id="close"></i>
+          <img id="logo" alt="logo" />
+          <ul class="list">
+            <li class="items">
+              <a href="" class="active-link">
+                <span>Pokemon</span>
+                <span class="pokemon-count" id="mobile-count"></span>
+              </a>
+            </li>
+            <li class="items">
+              <a href="">Series</a>
+            </li>
+            <li class="items">
+              <a href="">People</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <!-- pokemon list -->
+      <section class="pokemon"></section>
+      <!-- footer -->
+      <footer>
+        Created by
+        <b
+          ><a
+            href="https://github.com/Fombi-Favour"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Favour</a
+          ></b
+        >
+        under CC license
+      </footer>
+    </div>
     <!-- comment modal (complete later!!!) -->
-    <section class="comments">
+    <section class="comments" id="pop-comment">
       <div class="modal">
         <div class="action-close">
-          <span>x</span>
+          <span class="close">x</span>
         </div>
         <div class="content">
-          <span>pic</span>
+          <img src="./asset/logo.png" id="one-pic" alt="pic">
+          <h2 class="name">ivysaur</h2>
+          <span class="ability">Ability: Lorem ipseum</span>
+          <span class="habitat">Habitat: Lorem ipseum</span>
         </div>
+        <div class="comment-list">
+          <h3 class="comment-count">Comments (3)</h3>
+          <div class="main-list">
+            <!-- row #1 -->
+            <div class="row">
+              <span class="date">01-02-2023</span>
+              <div class="row-text">
+                <span class="name">Josh</span>
+                <span class="desc">So good</span>
+              </div>
+            </div>
+            <!-- row #2 -->
+            <div class="row">
+              <span class="date">01-05-2023</span>
+              <div class="row-text">
+                <span class="name">Ahmed</span>
+                <span class="desc">Awesome</span>
+              </div>
+            </div>
+            <!-- row #3 -->
+            <div class="row">
+              <span class="date">01-20-2023</span>
+              <div class="row-text">
+                <span class="name">Ange</span>
+                <span class="desc">Not bad!!!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="fill-in">
+          <input type="text" class="input-col" placeholder="Your name...">
+          <textarea name="" class="input-col" id="comment-text"  placeholder="Make your comments here..."></textarea>
+          <button type="submit" class="add-comment">Submit</button>
+        </form>
       </div>
     </section>
   </body>
