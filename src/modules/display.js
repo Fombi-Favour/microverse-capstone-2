@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getPokemonUrl } from './getData.js';
 import { likeApi } from './apiUrl.js';
+import toggle from './popup.js';
 
 const displayPokemon = async () => {
   const pokemon = await getPokemonUrl();
@@ -13,22 +14,32 @@ const displayPokemon = async () => {
     // eslint-disable-next-line no-return-assign
     postLikes.forEach((like) => (parseInt(like.item_id, 10) === data.id ? (totalLikes = like.likes) : ''));
 
-    axios.get(likeApi).then((res) => localStorage.setItem('likes', JSON.stringify(res.data)));
+    axios
+      .get(likeApi)
+      .then((res) => localStorage.setItem('likes', JSON.stringify(res.data)));
     const display = `
             <div class="pokemon-content">
-                <img id="pic" src="${data.sprites.other['official-artwork'].front_default}" alt="pokemon-pic">
+                <img id="pic" src="${
+  data.sprites.other['official-artwork'].front_default
+}" alt="pokemon-pic">
                 <div class="content-desc">
                     <h4>${data.species.name}</h4>
                     <div class="likes">
                         <button type="button" class="like-me" id=${data.id}>
                           <i class="las la-heart"></i>
                         </button>
-                        <span class="like-count">${totalLikes || '0'} Likes</span>
+                        <span class="like-count">${
+  totalLikes || '0'
+} Likes</span>
                     </div>
                 </div>
                 <div class="action">
-                    <button type="button" class="btn-click">Comments</button>
-                    <button type="button" class="btn-click">Reserve</button>
+                    <button type="button" class="btn-comment" id="${
+  data.species.name
+}">Comments</button>
+                    <button type="button" class="btn-reserve" id="${
+  data.species.name
+}">Reserve</button>
                 </div>
             </div>
         `;
@@ -58,6 +69,18 @@ const displayPokemon = async () => {
   // mobile version of pokemon count
   const counter = document.querySelector('#mobile-count');
   counter.innerHTML = `(${pokemon.length})`;
+
+  const commentButton = document.querySelector('.btn-comment');
+  // const reserveButton = document.querySelectorAll('.btn-reserve');
+  const closeButton = document.querySelector('.close');
+
+  commentButton.addEventListener('click', () => {
+    toggle();
+  });
+
+  closeButton.addEventListener('click', () => {
+    toggle();
+  });
 };
 
 // eslint-disable-next-line import/prefer-default-export
