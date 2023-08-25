@@ -33,6 +33,4 @@ const getPokemonSpecies = async () => {
   return fetchedUrl;
 };
 
-// Getting data from involvement API
-
 export { getPokemon, getPokemonUrl, getPokemonSpecies };
