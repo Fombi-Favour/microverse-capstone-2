@@ -1,9 +1,9 @@
-import { displayPokemon } from './modules/display.js';
 import './styles/style.css';
 // eslint-disable-next-line import/no-duplicates
 import Logo from './asset/logo.png';
 // eslint-disable-next-line import/no-duplicates
 import Logo1 from './asset/logo.png';
+import { displayPokemon } from './modules/display.js';
 
 const logo = document.getElementById('logo');
 logo.src = Logo;
