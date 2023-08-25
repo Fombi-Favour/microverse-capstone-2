@@ -1,5 +1,4 @@
 import { displayPokemon } from './modules/display.js';
-import { getPokemonSpecies } from './modules/getData.js';
 import './styles/style.css';
 // eslint-disable-next-line import/no-duplicates
 import Logo from './asset/logo.png';
@@ -33,4 +32,3 @@ close.addEventListener('click', () => {
 });
 
 displayPokemon();
-getPokemonSpecies();
