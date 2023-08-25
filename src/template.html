@@ -74,6 +74,28 @@
       </footer>
     </div>
     <!-- comment modal -->
-    <section class="comments" id="pop-comment"></section>
+    <section class="comments" id="pop-comment">
+      <div class="modal">
+        <div class="action-close">
+          <span class="close">X</span>
+        </div>
+        <div class="poke-content"></div>
+        <div class="comment-list">
+          <h3 id="comment-count"></h3>
+          <ul class="main-list">
+            <li class="row">
+              <span class="date"></span>
+              <span class="name"></span>
+              <span class="desc"></span>
+            </li>
+          </ul>
+        </div>
+        <div class="fill-in">
+          <input type="text" id="input-col" placeholder="your name..." required />
+          <textarea id="comment-text" placeholder="your comment..." required></textarea>
+          <button type="button" class="add-comment">comment</button>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
