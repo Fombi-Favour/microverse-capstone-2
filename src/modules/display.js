@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { likeApi, commentApi } from './apiUrl.js';
-import { getPokemonSpecies, getPokemonUrl } from './getData.js';
+import { getCombinedData } from './getData.js';
 
 let cardDisplay = '';
 const blur = document.getElementById('blur');
@@ -12,7 +12,6 @@ const Name = document.querySelector('#input-col');
 const Comment = document.querySelector('#comment-text');
 const closeBtn = document.querySelector('.close');
 const commentDetails = document.querySelector('.poke-content');
-const otherInfo = document.querySelector('.mid-poke');
 
 // count comments
 const countComments = (item) => {
@@ -38,7 +37,8 @@ const fetchComment = async (itemId) => {
       countComments(Comments.length);
     });
   } else {
-    mainComments.innerHTML = '';
+    mainComments.innerHTML = 'no comments...';
+    mainComments.style.textAlign = 'center';
     document.querySelector('#comment-count').innerHTML = 'Comments (0)';
   }
 };
@@ -74,8 +74,7 @@ const toggle = () => {
 closeBtn.addEventListener('click', () => { toggle(); });
 
 const displayPokemon = async () => {
-  const pokemon = await getPokemonUrl();
-  const url = await getPokemonSpecies();
+  const pokemon = await getCombinedData();
   const numberLikes = JSON.parse(localStorage.getItem('likes'));
   const postLikes = Array.isArray(numberLikes) ? numberLikes : [];
   let postLikeNumber;
@@ -95,20 +94,20 @@ const displayPokemon = async () => {
   pokemon.forEach((data) => {
     cardDisplay += `
         <div class="pokemon-content">
-            <img id="pic" src="${data.sprites.other['official-artwork'].front_default}" alt="pokemon-pic">
-            <div class="content-desc">
-                <h4>${data.species.name}</h4>
-                <div class="likes">
-                    <button type="button" class="like-me" id=${data.id}>
-                      <i class="las la-heart"></i>
-                    </button>
-                    <span class="like-count">${postLikeNumber || '0'} Likes</span>
-                </div>
-            </div>
-            <div class="action">
-                <button type="button" class="btn-comment ${data.id}" id="${data.species.name}">Comments</button>
-                <button type="button" class="btn-reserve" id="${data.species.name}">Reserve</button>
-            </div>
+          <img class="pic" id="${data.flavor_text_entries[6].flavor_text}" src="${data.sprites.other['official-artwork'].front_default}" alt="${data.habitat.name}">
+          <div class="content-desc">
+              <h4>${data.species.name}</h4>
+              <div class="likes">
+                  <button type="button" class="like-me" id=${data.id}>
+                    <i class="las la-heart"></i>
+                  </button>
+                  <span class="like-count">${postLikeNumber || '0'} Likes</span>
+              </div>
+          </div>
+          <div class="action">
+              <button type="button" class="btn-comment ${data.id}" id="${data.species.name}">Comments</button>
+              <button type="button" class="btn-reserve" id="${data.species.name}">Reserve</button>
+          </div>
         </div>
     `;
     card.innerHTML = cardDisplay;
@@ -130,8 +129,6 @@ const displayPokemon = async () => {
 
   LikeHandle();
 
-//   console.log(url);
-
   // Comment button for each pokemon card
   commentButton.forEach((index) => index.addEventListener('click', (e) => {
     const commentId = e.target.id;
@@ -141,7 +138,10 @@ const displayPokemon = async () => {
     commentDetails.innerHTML = `
         <img src="${e.target.parentElement.parentElement.firstElementChild.src}" alt="name" id="one-pic" />
         <h2>${e.target.id}</h2>
-        ${console.log(url)}
+        <div class="mid-poke">
+          <span><strong><em>Ability</em></strong>: <em>${e.target.parentElement.parentElement.firstElementChild.id}</em></span>
+          <span><strong><em>Habitat</em></strong>: <em>${e.target.parentElement.parentElement.firstElementChild.alt}</em></span>
+        </div>
     `;
   }));
 };
