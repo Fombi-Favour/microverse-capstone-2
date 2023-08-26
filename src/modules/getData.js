@@ -33,4 +33,22 @@ const getPokemonSpecies = async () => {
   return fetchedUrl;
 };
 
-export { getPokemon, getPokemonUrl, getPokemonSpecies };
+const getCombinedData = async () => {
+  const pokemon = await getPokemonUrl();
+  const pokeUrl = await getPokemonSpecies();
+
+  const combinedData = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const data1 of pokemon) {
+    const data2 = pokeUrl.find((data2) => data2.id === data1.id);
+    if (data2) {
+      const combinedObject = { ...data1, ...data2 };
+      combinedData.push(combinedObject);
+    }
+  }
+
+  return combinedData;
+};
+
+// eslint-disable-next-line object-curly-newline
+export { getPokemon, getPokemonUrl, getPokemonSpecies, getCombinedData };
