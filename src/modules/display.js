@@ -1,21 +1,32 @@
 import axios from 'axios';
-import { likeApi, commentApi } from './apiUrl.js';
+import { likeApi, commentApi, reserveApi } from './apiUrl.js';
 import { getCombinedData } from './getData.js';
 
 let cardDisplay = '';
 const blur = document.getElementById('blur');
 const popComment = document.getElementById('pop-comment');
+const popReserved = document.getElementById('pop-reserve');
 const card = document.querySelector('.pokemon');
 const mainComments = document.querySelector('.main-list');
+const mainReserve = document.querySelector('.main-list-reserve');
 const addComment = document.querySelector('.add-comment');
+const addReserve = document.querySelector('.add-reserve');
 const Name = document.querySelector('#input-col');
 const Comment = document.querySelector('#comment-text');
+const startDate = document.querySelector('#start');
+const endDate = document.querySelector('#end');
 const closeBtn = document.querySelector('.close');
+const close1Btn = document.querySelector('.close1');
 const commentDetails = document.querySelector('.poke-content');
+const reserveDetails = document.querySelector('.reserve-content');
 
 // count comments
 const countComments = (item) => {
   document.querySelector('#comment-count').innerHTML = `Comments (${item})`;
+};
+// count comments
+const countReservations = (item) => {
+  document.querySelector('#reserve-count').innerHTML = `Reservations (${item})`;
 };
 
 // fetch comment and display popup
@@ -43,6 +54,31 @@ const fetchComment = async (itemId) => {
   }
 };
 
+// fetch reservation and display popup
+const fetchReservation = async (itemId) => {
+  const response = await fetch(`${reserveApi}?item_id=${itemId}`);
+  const data = await response.json();
+  const Reserved = await data;
+  mainReserve.innerHTML = '';
+  if (response.status === 200) {
+    Reserved.forEach((index) => {
+      mainReserve.innerHTML += `
+          <li class="row">
+            <span class="date">${index.date_start}-${index.date_end}</span>
+            <span>by</span>
+            <span class="name">${index.username}</span>
+          </li>
+        `;
+      // count comments
+      countReservations(Reserved.length);
+    });
+  } else {
+    mainReserve.innerHTML = 'no reservations...';
+    mainReserve.style.textAlign = 'center';
+    document.querySelector('#reserve-count').innerHTML = 'Reservations (0)';
+  }
+};
+
 // Comment function (post comment)
 const postComment = async (itemId, username, comment) => {
   await fetch(`${commentApi}`, {
@@ -57,6 +93,21 @@ const postComment = async (itemId, username, comment) => {
   fetchComment(itemId);
 };
 
+// Reservation function (post reservation)
+const postReservation = async (itemId, username, startDate, endDate) => {
+  await fetch(`${reserveApi}`, {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    body: JSON.stringify({
+      item_id: itemId,
+      username,
+      date_start: startDate,
+      date_end: endDate,
+    }),
+  });
+  fetchReservation(itemId);
+};
+
 // Send comments to the API
 addComment.addEventListener('click', () => {
   const reqId = addComment.getAttribute('id');
@@ -65,13 +116,24 @@ addComment.addEventListener('click', () => {
   Comment.value = '';
 });
 
+// Send reservation to the API
+addReserve.addEventListener('click', () => {
+  const reqId = addReserve.getAttribute('id');
+  postReservation(reqId, Name.value, startDate.value, endDate.value);
+  Name.value = '';
+  startDate.value = '';
+  endDate.value = '';
+});
+
 // toggle behaviour
 const toggle = () => {
   blur.classList.toggle('active');
   popComment.classList.toggle('active');
+  popReserved.classList.toggle('active');
 };
 
 closeBtn.addEventListener('click', () => { toggle(); });
+close1Btn.addEventListener('click', () => { toggle(); });
 
 const displayPokemon = async () => {
   const pokemon = await getCombinedData();
@@ -105,7 +167,7 @@ const displayPokemon = async () => {
               </div>
           </div>
           <div class="action">
-              <button type="button" class="btn-comment ${data.id}" id="${data.species.name}">Comments</button>
+              <button type="button" class="btn-comment" id="${data.species.name}">Comments</button>
               <button type="button" class="btn-reserve" id="${data.species.name}">Reserve</button>
           </div>
         </div>
@@ -113,6 +175,7 @@ const displayPokemon = async () => {
     card.innerHTML = cardDisplay;
   });
   const commentButton = document.querySelectorAll('.btn-comment');
+  const reserveButton = document.querySelectorAll('.btn-reserve');
   const likeButton = document.querySelectorAll('.like-count');
   const LikeHandle = () => {
     likeButton.forEach((item) => item.addEventListener('click', () => {
@@ -136,6 +199,21 @@ const displayPokemon = async () => {
     fetchComment(commentId);
     addComment.setAttribute('id', commentId);
     commentDetails.innerHTML = `
+        <img src="${e.target.parentElement.parentElement.firstElementChild.src}" alt="name" id="one-pic" />
+        <h2>${e.target.id}</h2>
+        <div class="mid-poke">
+          <span><strong><em>Ability</em></strong>: <em>${e.target.parentElement.parentElement.firstElementChild.id}</em></span>
+          <span><strong><em>Habitat</em></strong>: <em>${e.target.parentElement.parentElement.firstElementChild.alt}</em></span>
+        </div>
+    `;
+  }));
+  // Reservation button for each pokemon card
+  reserveButton.forEach((index) => index.addEventListener('click', (e) => {
+    const reserveId = e.target.id;
+    toggle();
+    fetchReservation(reserveId);
+    addReserve.setAttribute('id', reserveId);
+    reserveDetails.innerHTML = `
         <img src="${e.target.parentElement.parentElement.firstElementChild.src}" alt="name" id="one-pic" />
         <h2>${e.target.id}</h2>
         <div class="mid-poke">
