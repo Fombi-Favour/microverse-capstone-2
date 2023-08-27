@@ -69,7 +69,7 @@ const fetchReservation = async (itemId) => {
             <span class="name">${index.username}</span>
           </li>
         `;
-      // count comments
+      // count reservations
       countReservations(Reserved.length);
     });
   } else {
@@ -126,14 +126,18 @@ addReserve.addEventListener('click', () => {
 });
 
 // toggle behaviour
-const toggle = () => {
+const CommentToggle = () => {
   blur.classList.toggle('active');
   popComment.classList.toggle('active');
+};
+
+const ReserveToggle = () => {
+  blur.classList.toggle('active');
   popReserved.classList.toggle('active');
 };
 
-closeBtn.addEventListener('click', () => { toggle(); });
-close1Btn.addEventListener('click', () => { toggle(); });
+closeBtn.addEventListener('click', () => { CommentToggle(); });
+close1Btn.addEventListener('click', () => { ReserveToggle(); });
 
 const displayPokemon = async () => {
   const pokemon = await getCombinedData();
@@ -195,7 +199,7 @@ const displayPokemon = async () => {
   // Comment button for each pokemon card
   commentButton.forEach((index) => index.addEventListener('click', (e) => {
     const commentId = e.target.id;
-    toggle();
+    CommentToggle();
     fetchComment(commentId);
     addComment.setAttribute('id', commentId);
     commentDetails.innerHTML = `
@@ -210,13 +214,13 @@ const displayPokemon = async () => {
   // Reservation button for each pokemon card
   reserveButton.forEach((index) => index.addEventListener('click', (e) => {
     const reserveId = e.target.id;
-    toggle();
+    ReserveToggle();
     fetchReservation(reserveId);
     addReserve.setAttribute('id', reserveId);
     reserveDetails.innerHTML = `
-        <img src="${e.target.parentElement.parentElement.firstElementChild.src}" alt="name" id="one-pic" />
+        <img src="${e.target.parentElement.parentElement.firstElementChild.src}" alt="name" id="rev-pic" />
         <h2>${e.target.id}</h2>
-        <div class="mid-poke">
+        <div class="rev-poke">
           <span><strong><em>Ability</em></strong>: <em>${e.target.parentElement.parentElement.firstElementChild.id}</em></span>
           <span><strong><em>Habitat</em></strong>: <em>${e.target.parentElement.parentElement.firstElementChild.alt}</em></span>
         </div>
