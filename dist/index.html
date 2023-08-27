@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Pokémon</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+  <script defer src="bundle.js"></script></head>
+  <body>
+    <div id="blur" class="blurred">
+      <!-- header -->
+      <header>
+        <div class="main-title">
+          <i class="las la-bars" id="menu"></i>
+          <h2>Pokémon</h2>
+        </div>
+        <!-- desktop menu -->
+        <div class="desk-menu-nav">
+          <img id="logo1" alt="logo" />
+          <ul class="list">
+            <li class="items">
+              <a href="" class="active-link">
+                <span>Pokemon</span>
+                <span class="pokemon-count"></span>
+              </a>
+            </li>
+            <li class="items">
+              <a href="">Series</a>
+            </li>
+            <li class="items">
+              <a href="">People</a>
+            </li>
+          </ul>
+        </div>
+        <!-- mobile menu -->
+        <div class="mob-menu-nav" id="menuNav">
+          <i class="las la-times" id="close"></i>
+          <img id="logo" alt="logo" />
+          <ul class="list">
+            <li class="items">
+              <a href="" class="active-link">
+                <span>Pokemon</span>
+                <span class="pokemon-count" id="mobile-count"></span>
+              </a>
+            </li>
+            <li class="items">
+              <a href="">Series</a>
+            </li>
+            <li class="items">
+              <a href="">People</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <!-- pokemon list -->
+      <section class="pokemon"></section>
+      <!-- footer -->
+      <footer>
+        Created by
+        <b
+          ><a
+            href="https://github.com/Fombi-Favour"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Favour</a
+          ></b
+        >
+        under CC license
+      </footer>
+    </div>
+    <!-- comment modal -->
+    <section class="comments" id="pop-comment">
+      <div class="modal">
+        <div class="action-close">
+          <span class="close">X</span>
+        </div>
+        <div class="poke-content"></div>
+        <div class="comment-list">
+          <h3 id="comment-count"></h3>
+          <ul class="main-list"></ul>
+        </div>
+        <div class="fill-in">
+          <h2>Add a comment</h2>
+          <input type="text" id="input-col" placeholder="your name..." required />
+          <textarea id="comment-text" placeholder="your comment..." required></textarea>
+          <button type="button" class="add-comment">comment</button>
+        </div>
+      </div>
+    </section>
+    <!-- reserve modal -->
+    <section class="reserve" id="pop-reserve">
+      <div class="modal-reserve">
+        <div class="action-close1">
+          <span class="close1">X</span>
+        </div>
+        <div class="reserve-content"></div>
+        <div class="reserve-list">
+          <h3 id="reserve-count"></h3>
+          <ul class="main-list-reserve">
+          </ul>
+        </div>
+        <div class="fill-in">
+          <h2>Add a resevation</h2>
+          <input type="text" id="input-col" placeholder="your name..." required />
+          <input type="date" id="start" placeholder="start date...">
+          <input type="date" id="end" placeholder="end date...">
+          <button type="button" class="add-reserve">reserve</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
