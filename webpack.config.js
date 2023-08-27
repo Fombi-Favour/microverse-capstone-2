@@ -9,12 +9,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    clean: true,
   },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
+    port: 8000,
     open: true,
     hot: true,
   },
@@ -25,14 +25,14 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|svg|jpg|gif|jpeg|webp)$/i,
+        test: /\.(png|svg|jpg|gif|jpeg|webp|icon|ico)$/i,
         type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Capstone project',
+      title: 'My Pokémon',
       template: path.resolve(__dirname, 'src/template.html'),
     }),
   ],

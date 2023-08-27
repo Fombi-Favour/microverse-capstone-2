@@ -1,0 +1,472 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #0093e9;
+  background-image: -webkit-linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: -moz-linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: -o-linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+
+.blurred#blur.active {
+  filter: blur(5px);
+  pointer-events: none;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+/************ mobile view ***************/
+
+/* header section */
+header {
+  padding: 12px;
+}
+
+.main-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.main-title h2 {
+  color: #fff;
+  font-weight: 400;
+}
+
+.las {
+  font-size: 32px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.la-times {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  margin-top: 2rem;
+}
+
+.desk-menu-nav {
+  display: none;
+}
+
+.mob-menu-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: #8ec5fc;
+  background-image: -webkit-linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-image: -moz-linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-image: -o-linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  position: fixed;
+  top: 0;
+  left: 48rem;
+  z-index: 5;
+  padding: 10px;
+  transition: 0.6s;
+}
+
+#logo {
+  width: 14rem;
+}
+
+.list {
+  list-style: none;
+}
+
+.items {
+  padding: 8px 0;
+}
+
+.items a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fffffff6;
+  cursor: pointer;
+}
+
+.items .active-link {
+  font-weight: 600;
+  border-bottom: 1px solid;
+  padding-bottom: 3px;
+}
+
+/* Pokemon list */
+.pokemon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.87rem;
+  padding: 1rem 0;
+  overflow-y: scroll;
+}
+
+.pokemon::-webkit-scrollbar {
+  display: none;
+}
+
+/* pokemon content sub-section */
+.pokemon-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  backdrop-filter: blur(6px);
+}
+
+.hidden {
+  display: none;
+}
+
+.pic {
+  width: 14.215rem;
+}
+
+.content-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  margin-top: -10px;
+}
+
+.like-me {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.la-heart#change.activate {
+  color: #147bf0;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  gap: 0.784rem;
+  margin-top: 10px;
+}
+
+.btn-comment,
+.btn-reserve {
+  width: 110px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  background: #4164ff;
+  cursor: pointer;
+}
+
+/* footer section */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  background-color: #ff3cac;
+  background-image:
+    -webkit-linear-gradient(
+      225deg,
+      #ff3cac 0%,
+      #784ba0 50%,
+      #2b86c5 100%
+    );
+  background-image:
+    -moz-linear-gradient(
+      225deg,
+      #ff3cac 0%,
+      #784ba0 50%,
+      #2b86c5 100%
+    );
+  background-image:
+    -o-linear-gradient(
+      225deg,
+      #ff3cac 0%,
+      #784ba0 50%,
+      #2b86c5 100%
+    );
+  background-image:
+    linear-gradient(
+      225deg,
+      #ff3cac 0%,
+      #784ba0 50%,
+      #2b86c5 100%
+    );
+  padding: 12px;
+  text-align: center;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* comment section & reserve section (popup window) */
+.comments,
+.reserve {
+  position: fixed;
+  top: 7.4rem;
+  left: 50%;
+  width: 21.525rem;
+  height: 34.813rem;
+  transform: translate(-50%, -5%);
+  padding: 26px 0;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  border-radius: 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
+  overflow-y: scroll;
+}
+
+.comments::-webkit-scrollbar,
+.reserve::-webkit-scrollbar {
+  display: none;
+}
+
+.comments#pop-comment.active,
+.reserve#pop-reserve.active {
+  top: 3.125rem;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.7s;
+}
+
+.modal,
+.modal-reserve {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-close,
+.action-close1 {
+  display: flex;
+  justify-content: end;
+  padding: 0 10px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+
+.action-close span,
+.action-close1 span {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  width: 1.512rem;
+  height: 1.512rem;
+  border: 2px solid #2b86c5;
+  background-color: #2b86c5;
+  border-radius: 50%;
+  margin-top: -13px;
+}
+
+.poke-content,
+.reserve-content,
+.comment-list,
+.reserve-list,
+.fill-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#one-pic,
+#rev-pic {
+  width: 5.275rem;
+  height: 5.275rem;
+}
+
+.mid-poke,
+.rev-poke {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.main-list,
+.main-list-reserve {
+  list-style-type: none;
+  border-radius: 12px;
+  padding: 0;
+  margin-top: -10px;
+  width: 20rem;
+  height: 8.125rem;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.5);
+  overflow: scroll;
+}
+
+.main-list::-webkit-scrollbar,
+.main-list-reserve::-webkit-scrollbar {
+  display: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 6px 12px;
+  background-color: #8bc6ec;
+  background-image: -webkit-linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  background-image: -moz-linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  background-image: -o-linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+}
+
+.row:nth-child(1) {
+  border-radius: 12px 12px 0 0;
+  margin-top: -1px;
+}
+
+.row:last-child() {
+  border-radius: 0 0 12px 12px;
+}
+
+.row:nth-child(even) {
+  background: #fff;
+}
+
+.date {
+  opacity: 0.6;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.fill-in {
+  padding-top: 1.813rem;
+  gap: 12px;
+}
+
+#input-col,
+#start,
+#end {
+  width: 16.457rem;
+  height: 1.813rem;
+  padding: 0 12px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  outline: none;
+}
+
+#comment-text {
+  width: 16.457rem;
+  border: 1px solid #000;
+  border-radius: 12px;
+  padding: 9px 12px;
+  resize: none;
+}
+
+.add-comment,
+.add-reserve {
+  width: 7.784rem;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: #0093e9;
+  border-radius: 9px;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 0.945rem;
+  font-weight: 600;
+  letter-spacing: 0.04rem;
+  transition: 0.5s;
+}
+
+.add-comment:hover,
+.add-reserve:hover {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  transition: 0.6s;
+}
+
+/************ tablet view ***************/
+@media only screen and (min-width: 768px) {
+  /* header section */
+  header {
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    background-color: #8ec5fc;
+    background-image: -webkit-linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+    background-image: -moz-linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+    background-image: -o-linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  }
+
+  .main-title {
+    display: none;
+  }
+
+  .mob-menu-nav {
+    display: none;
+  }
+
+  .desk-menu-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #logo1 {
+    width: 12rem;
+  }
+
+  .list {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  /* Pokemon list */
+  .pokemon {
+    gap: 14px;
+    padding: 10rem 0;
+  }
+
+  /* footer section */
+  footer {
+    font-size: 19px;
+  }
+
+  /* comment section */
+  .comments,
+  .reserve {
+    width: 43rem;
+  }
+
+  .main-list {
+    width: 34rem;
+    height: 10.125rem;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.5);
+    overflow: scroll;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    gap: 3.518rem;
+  }
+}
