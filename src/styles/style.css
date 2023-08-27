@@ -289,12 +289,14 @@ footer a {
   align-items: center;
 }
 
-#one-pic {
+#one-pic,
+#rev-pic {
   width: 5.275rem;
   height: 5.275rem;
 }
 
-.mid-poke {
+.mid-poke,
+.rev-poke {
   display: flex;
   flex-direction: column;
   align-items: center;
