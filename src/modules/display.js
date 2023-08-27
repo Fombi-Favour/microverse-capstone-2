@@ -144,8 +144,6 @@ const displayPokemon = async () => {
   const numberLikes = JSON.parse(localStorage.getItem('likes'));
   const postLikes = Array.isArray(numberLikes) ? numberLikes : [];
   let postLikeNumber;
-  // eslint-disable-next-line no-return-assign
-  postLikes.forEach((like) => (parseInt(like.item_id, 10) === pokemon.id ? (postLikeNumber = like.likes) : ''));
 
   // desktop version of pokemon count
   const count = document.querySelector('.pokemon-count');
@@ -158,6 +156,8 @@ const displayPokemon = async () => {
   axios.get(likeApi)
     .then((res) => localStorage.setItem('likes', JSON.stringify(res.data)));
   pokemon.forEach((data) => {
+    // eslint-disable-next-line no-return-assign
+    postLikes.forEach((like) => (parseInt(like.item_id, 10) === data.id ? (postLikeNumber = like.likes) : '0'));
     cardDisplay += `
         <div class="pokemon-content">
           <img class="pic" id="${data.flavor_text_entries[6].flavor_text}" src="${data.sprites.other['official-artwork'].front_default}" alt="${data.habitat.name}">
@@ -180,17 +180,13 @@ const displayPokemon = async () => {
   });
   const commentButton = document.querySelectorAll('.btn-comment');
   const reserveButton = document.querySelectorAll('.btn-reserve');
-  const likeButton = document.querySelectorAll('.like-count');
+  const likeButton = document.querySelectorAll('.like-me');
+  const likeCount = document.querySelectorAll('.like-count');
   const LikeHandle = () => {
     likeButton.forEach((item) => item.addEventListener('click', () => {
-      likeButton.classList.add('activate');
-      axios.post(likeApi, { item_id: item.id })
-        .then(() => {
-          setTimeout(() => {
-            likeButton.classList.remove('activate');
-            postLikeNumber += 1;
-          }, 760);
-        });
+      document.getElementById(item.id).innerHTML = '&#10084;';
+      axios.post(likeApi, { item_id: item.id });
+      likeCount.innerHTML = postLikeNumber;
     }));
   };
 
