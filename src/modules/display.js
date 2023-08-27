@@ -13,6 +13,7 @@ const addComment = document.querySelector('.add-comment');
 const addReserve = document.querySelector('.add-reserve');
 const Name = document.querySelector('#input-col');
 const Comment = document.querySelector('#comment-text');
+const resName = document.querySelector('#name');
 const startDate = document.querySelector('#start');
 const endDate = document.querySelector('#end');
 const closeBtn = document.querySelector('.close');
@@ -63,8 +64,8 @@ const fetchReservation = async (itemId) => {
   if (response.status === 200) {
     Reserved.forEach((index) => {
       mainReserve.innerHTML += `
-          <li class="row">
-            <span class="date">${index.date_start}-${index.date_end}</span>
+          <li class="row-rev">
+            <span class="date-range">${index.date_start}-${index.date_end}</span>
             <span>by</span>
             <span class="name">${index.username}</span>
           </li>
@@ -119,8 +120,8 @@ addComment.addEventListener('click', () => {
 // Send reservation to the API
 addReserve.addEventListener('click', () => {
   const reqId = addReserve.getAttribute('id');
-  postReservation(reqId, Name.value, startDate.value, endDate.value);
-  Name.value = '';
+  postReservation(reqId, resName.value, startDate.value, endDate.value);
+  resName.value = '';
   startDate.value = '';
   endDate.value = '';
 });
