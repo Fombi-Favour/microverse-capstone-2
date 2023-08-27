@@ -149,7 +149,7 @@ header {
   outline: none;
 }
 
-.activate {
+.la-heart#change.activate {
   color: #147bf0;
 }
 
