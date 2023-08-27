@@ -73,7 +73,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- <a href="https://showaddict-fombi-zuheb.netlify.app">Check out the live demo</a>
+- <a href="https://pokeapi-02.netlify.app/">Check out the live demo</a>
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
