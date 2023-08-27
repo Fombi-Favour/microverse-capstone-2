@@ -219,8 +219,9 @@ footer a {
   text-decoration: none;
 }
 
-/* comment section (popup window) */
-.comments {
+/* comment section & reserve section (popup window) */
+.comments,
+.reserve {
   position: fixed;
   top: 7.4rem;
   left: 50%;
@@ -237,23 +238,27 @@ footer a {
   overflow-y: scroll;
 }
 
-.comments::-webkit-scrollbar {
+.comments::-webkit-scrollbar,
+.reserve::-webkit-scrollbar {
   display: none;
 }
 
-.comments#pop-comment.active {
+.comments#pop-comment.active,
+.reserve#pop-reserve.active {
   top: 3.125rem;
   visibility: visible;
   opacity: 1;
   transition: 0.7s;
 }
 
-.modal {
+.modal,
+.modal-reserve {
   display: flex;
   flex-direction: column;
 }
 
-.action-close {
+.action-close,
+.action-close1 {
   display: flex;
   justify-content: end;
   padding: 0 10px;
@@ -261,7 +266,8 @@ footer a {
   cursor: pointer;
 }
 
-.action-close span {
+.action-close span,
+.action-close1 span {
   font-size: 20px;
   color: #fff;
   text-align: center;
@@ -274,7 +280,9 @@ footer a {
 }
 
 .poke-content,
+.reserve-content,
 .comment-list,
+.reserve-list,
 .fill-in {
   display: flex;
   flex-direction: column;
@@ -294,7 +302,8 @@ footer a {
   padding: 0 8px;
 }
 
-.main-list {
+.main-list,
+.main-list-reserve {
   list-style-type: none;
   border-radius: 12px;
   padding: 0;
@@ -305,7 +314,8 @@ footer a {
   overflow: scroll;
 }
 
-.main-list::-webkit-scrollbar {
+.main-list::-webkit-scrollbar,
+.main-list-reserve::-webkit-scrollbar {
   display: none;
 }
 
@@ -347,7 +357,9 @@ footer a {
   gap: 12px;
 }
 
-#input-col {
+#input-col,
+#start,
+#end {
   width: 16.457rem;
   height: 1.813rem;
   padding: 0 12px;
@@ -364,7 +376,8 @@ footer a {
   resize: none;
 }
 
-.add-comment {
+.add-comment,
+.add-reserve {
   width: 7.784rem;
   height: 30px;
   border: none;
@@ -379,7 +392,8 @@ footer a {
   transition: 0.5s;
 }
 
-.add-comment:hover {
+.add-comment:hover,
+.add-reserve:hover {
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   font-weight: 700;
   transition: 0.6s;
@@ -436,7 +450,8 @@ footer a {
   }
 
   /* comment section */
-  .comments {
+  .comments,
+  .reserve {
     width: 43rem;
   }
 
@@ -451,10 +466,5 @@ footer a {
     display: flex;
     justify-content: center;
     gap: 3.518rem;
-  }
-
-  .row-text {
-    display: flex;
-    gap: 14px;
   }
 }
